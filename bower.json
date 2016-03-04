@@ -1,0 +1,17 @@
+{
+    "name": "whattocook",
+    "version": "1.0.0",
+    "authors": [
+        "Pranav Ravichandran <me@onloop.net>"
+    ],
+    "private": true,
+    "license": "MIT",
+    "dependencies": {
+        "requirejs": "latest",
+        "elasticsearch": "latest",
+        "backbone": "latest",
+        "underscore": "latest",
+        "jquery": "latest",
+        "backbone.localstorage": "latest"
+    }
+}
