@@ -1,6 +1,10 @@
 "use strict";
 
-define(['underscore', 'backbone', 'jquery'], function (_, Backbone, $) {
+define(['jquery',
+        'underscore',
+        'backbone',
+        'jquery.tagsinput'
+], function ($, _, Backbone, TagsInput) {
     var Recipe = Backbone.Model.extend({
         urlRoot: '/',
         defaults: {
@@ -24,7 +28,20 @@ define(['underscore', 'backbone', 'jquery'], function (_, Backbone, $) {
         el: '#container',
         
         initialize: function () {
-            console.log('foobar');
+            this.$el.find('.search-input').tagsInput({
+                'defaultText': 'Search',
+                'width': '99%',
+                'height': '100%',
+                'delimiter': [',',';'],
+                'onAddTag': this.tagAdded,
+                'onRemoveTag': this.tagRemoved
+            });
+        },
+
+        tagAdded: function (tag) {
+        },
+
+        tagRemoved: function (tag) {
         },
         
         render: function () {
