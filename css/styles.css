@@ -46,3 +46,26 @@ input.search-input {
     background-color: white;
     padding: 3%;
 }
+
+div.tagsinput {
+    font-size: 15px !important;
+    color: black !important;
+    font-family: 'Oswald', sans-serif !important;
+}
+
+div.tagsinput span.tag {
+    background-color: hsl(0, 0%, 92%) !important;
+    font-size: 15px !important;
+    color: black !important;
+    border-color: hsl(0, 0%, 92%) !important;
+    font-family: 'Oswald', sans-serif !important;
+}
+
+div.tagsinput span.tag a {
+    color: black !important;
+}
+
+div.tagsinput input {
+    font-size: 15px !important;
+    font-family: 'Oswald', sans-serif !important;
+}
