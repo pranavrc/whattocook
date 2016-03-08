@@ -4,6 +4,10 @@ require.config({
         'jquery.tagsinput': '../bower_components/jquery.tagsinput/src/jquery.tagsinput',
         'backbone': '../bower_components/backbone/backbone',
         'underscore': '../bower_components/underscore/underscore'
+    },
+
+    shim: {
+        'jquery.tagsinput': ['jquery']
     }
 });
 
