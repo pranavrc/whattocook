@@ -27,16 +27,14 @@ body {
 }
 
 input.search-input {
-    height: 45px;
-    width: 97%;
+    height: 40px;
+    width: 99%;
     background-color: white;
-    border-width: 0;
-    font-size: 30px;
+    font-size: 15px;
     font-family: 'Oswald', sans-serif;
-    padding-right: 15px;
-    padding-left: 15px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    border: 1px solid #CCC;
+    padding: 5px;
+    overflow-y: auto;
 }
 
 #results {
