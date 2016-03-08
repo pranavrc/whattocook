@@ -18,10 +18,14 @@ define(['jquery',
         urlRoot: '/'
     });
 
-    var SearchTags = Backbone.Model.extend({
+    var SearchTag = Backbone.Model.extend({
         defaults: {
-            tags: []
+            value: ''
         }
+    });
+
+    var SearchTags = Backbone.Collection.extend({
+        model: SearchTag
     });
 
     var App = Backbone.View.extend({
@@ -45,15 +49,11 @@ define(['jquery',
         },
 
         tagAdded: function (tag) {
-            this.searchTags.attributes.tags.push(tag);
+            this.searchTags.add({tag: tag});
         },
 
         tagRemoved: function (tag) {
-            this.searchTags.attributes.tags.pop();
-        },
-        
-        render: function () {
-            console.log('bar');
+            this.searchTags.remove(this.searchTags.where({tag: tag}));
         }
     });
 
