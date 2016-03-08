@@ -3,8 +3,9 @@
 define(['jquery',
         'underscore',
         'backbone',
-        'jquery.tagsinput'
-], function ($, _, Backbone, TagsInput) {
+        'jquery.tagsinput',
+        'backbone.localStorage'
+], function ($, _, Backbone, TagsInput, localStorage) {
     var Recipe = Backbone.Model.extend({
         urlRoot: '/',
         defaults: {
@@ -25,7 +26,8 @@ define(['jquery',
     });
 
     var SearchTags = Backbone.Collection.extend({
-        model: SearchTag
+        model: SearchTag,
+        localStorage: new Backbone.LocalStorage("whattocook-tags")
     });
 
     var App = Backbone.View.extend({
@@ -49,11 +51,15 @@ define(['jquery',
         },
 
         tagAdded: function (tag) {
-            this.searchTags.add({tag: tag});
+            var searchTag = new SearchTag({tag: tag});
+            this.searchTags.add(searchTag);
+            searchTag.save();
         },
 
         tagRemoved: function (tag) {
-            this.searchTags.remove(this.searchTags.where({tag: tag}));
+            var searchTag = new SearchTag({tag: tag});
+            this.searchTags.remove(searchTag);
+            searchTag.destroy();
         }
     });
 
