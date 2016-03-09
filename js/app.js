@@ -5,7 +5,7 @@ define(['jquery',
         'backbone',
         'jquery.tagsinput',
         'backbone.localStorage'
-], function ($, _, Backbone, TagsInput, localStorage) {
+], function ($, _, Backbone, TagsInput, LocalStorage) {
     var Recipe = Backbone.Model.extend({
         urlRoot: '/',
         defaults: {
@@ -22,17 +22,22 @@ define(['jquery',
     var SearchTag = Backbone.Model.extend({
         defaults: {
             value: ''
-        }
+        },
+        localStorage: new LocalStorage("whattocook-tags")
     });
 
     var SearchTags = Backbone.Collection.extend({
         model: SearchTag,
-        localStorage: new Backbone.LocalStorage("whattocook-tags")
+        localStorage: new LocalStorage("whattocook-tags")
     });
 
     var App = Backbone.View.extend({
         el: '#container',
-        
+
+        events: {
+            'submit form': 'search'
+        },
+
         initialize: function () {
             _.bindAll(this, 'tagAdded', 'tagRemoved');
 
@@ -50,16 +55,22 @@ define(['jquery',
             });
         },
 
+        search: function (e) {
+            e.preventDefault();
+            debugger;
+        },
+
         tagAdded: function (tag) {
-            var searchTag = new SearchTag({tag: tag});
+            var searchTag = new SearchTag({value: tag});
             this.searchTags.add(searchTag);
             searchTag.save();
         },
 
         tagRemoved: function (tag) {
-            var searchTag = new SearchTag({tag: tag});
-            this.searchTags.remove(searchTag);
-            searchTag.destroy();
+            var tagsToRemove = this.searchTags.where({value: tag});
+            for (var tag in tagsToRemove) {
+                tagsToRemove[tag].destroy();
+            }
         }
     });
 
