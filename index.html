@@ -12,7 +12,8 @@
 
         <link rel="stylesheet" href="css/styles.css">
         <link rel="stylesheet" type="text/css" href="bower_components/jquery.tagsinput/src/jquery.tagsinput.css" />
-	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
         <script data-main="js/main" src="bower_components/requirejs/require.js"></script>
     </head>
@@ -20,7 +21,12 @@
     <body>
         <div id="container">
             <div id="search">
-                <input class="search-input" autofocus>
+                <form class="search-form">
+                    <input class="search-input" autofocus>
+                    <button type="submit" class="search-button">
+                        <span class="icon"><i class="fa fa-search" style="color: gray;"></i></span>
+                    </button>
+                </form>
             </div>
            <div id="results">
             </div>
