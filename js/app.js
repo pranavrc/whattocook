@@ -84,6 +84,8 @@ define(['jquery',
                 self.$el.find('.search-input').addTag(model.get('value'));
                 model.destroy();
             });
+
+            this.$el.find('form').submit();
         }
     });
 
