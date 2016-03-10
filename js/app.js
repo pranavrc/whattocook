@@ -39,7 +39,7 @@ define(['jquery',
         },
 
         initialize: function () {
-            _.bindAll(this, 'tagAdded', 'tagRemoved');
+            _.bindAll(this, 'tagAdded', 'tagRemoved', 'updateSearch');
 
             var self = this;
             this.recipeCollection = new Recipes;
@@ -52,6 +52,10 @@ define(['jquery',
                 'delimiter': [',',';'],
                 'onAddTag': self.tagAdded,
                 'onRemoveTag': self.tagRemoved
+            });
+
+            this.searchTags.fetch({
+                success: self.updateSearch
             });
         },
 
@@ -71,6 +75,15 @@ define(['jquery',
             for (var tag in tagsToRemove) {
                 tagsToRemove[tag].destroy();
             }
+        },
+
+        updateSearch: function (collection, response, options) {
+            var self = this;
+
+            _.each(_.clone(this.searchTags.models), function (model) {
+                self.$el.find('.search-input').addTag(model.get('value'));
+                model.destroy();
+            });
         }
     });
 
